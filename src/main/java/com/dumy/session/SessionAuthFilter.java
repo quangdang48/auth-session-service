@@ -1,6 +1,7 @@
 package com.dumy.session;
 
 import com.dumy.common.ApiResponse;
+import com.dumy.constant.SessionConstants;
 import com.dumy.entity.Session;
 import com.dumy.exception.BusinessException;
 import com.dumy.exception.ErrorCode;
@@ -17,21 +18,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.List;
 
 @Component
 @RequiredArgsConstructor
 public class SessionAuthFilter extends OncePerRequestFilter {
-
-    private static final String SESSION_TOKEN_HEADER = "X-Session-Token";
-
-    private static final List<String> ALLOWLIST_PREFIXES = List.of(
-            "/api/auth/register",
-            "/api/auth/login",
-            "/swagger-ui",
-            "/v3/api-docs",
-            "/h2-console"
-    );
 
     private final SessionService sessionService;
     private final ObjectMapper objectMapper;
@@ -39,13 +29,13 @@ public class SessionAuthFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
         String path = request.getRequestURI();
-        return ALLOWLIST_PREFIXES.stream().anyMatch(path::startsWith);
+        return SessionConstants.ALLOWLIST_PREFIXES.stream().anyMatch(path::startsWith);
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        String token = request.getHeader(SESSION_TOKEN_HEADER);
+        String token = request.getHeader(SessionConstants.SESSION_TOKEN_HEADER);
 
         if (token == null || token.isBlank()) {
             writeError(response, ErrorCode.ERROR_401_3008);
