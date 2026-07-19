@@ -6,7 +6,6 @@ public enum ErrorCode {
     ERROR_400_VALIDATION(4001, "Validation failed"),
     ERROR_404_2001(2001, "User not found"),
     ERROR_409_2002(2002, "Username already taken"),
-    ERROR_409_2003(2003, "Email already in use"),
     ERROR_500_5000(5000, "Internal server error");
 
     private final int code;

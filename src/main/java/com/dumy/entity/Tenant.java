@@ -13,37 +13,29 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.Instant;
 
 @Entity
-@Table(name = "tbl_user")
+@Table(name = "tbl_tenant")
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+public class Tenant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(length = 36, updatable = false, nullable = false)
     private String id;
 
-    @Column(nullable = false, unique = true)
-    private String username;
-
     @Column(nullable = false)
-    private String password;
+    private String name;
 
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
-
-    @LastModifiedDate
-    @Column(name = "updated_at")
-    private Instant updatedAt;
 }
