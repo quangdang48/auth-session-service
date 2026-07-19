@@ -3,6 +3,7 @@ package com.dumy.service;
 import com.dumy.dto.RegisterB2BRequest;
 import com.dumy.dto.RegisterB2CRequest;
 import com.dumy.dto.UserResponse;
+import com.dumy.entity.ERole;
 import com.dumy.entity.EUserType;
 import com.dumy.entity.Tenant;
 import com.dumy.entity.TenantUser;
@@ -65,7 +66,7 @@ public class AuthServiceImpl implements AuthService {
         TenantUser tenantUser = TenantUser.builder()
                 .tenant(tenant)
                 .user(user)
-                .status()
+                .role(ERole.OWNER)
                 .build();
         tenantUserRepository.save(tenantUser);
 

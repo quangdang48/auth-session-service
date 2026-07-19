@@ -51,8 +51,3 @@ public class User {
     @Column(name = "updated_at")
     private Instant updatedAt;
 }
-
-public enum EUserType {
-    B2B,
-    B2C
-}

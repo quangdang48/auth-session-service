@@ -56,12 +56,13 @@ public class TenantUser {
     @Builder.Default
     private ETenantUserStatus status = ETenantUserStatus.ACTIVE;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
+    @ColumnDefault("'MEMBER'")
+    @Builder.Default
+    private ERole role = ERole.MEMBER;
+
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
-}
-
-public enum ETenantUserStatus {
-    ACTIVE,
-    PENDING
 }
