@@ -1,0 +1,25 @@
+Table tbl_tenant {
+  id varchar [pk]
+  name varchar 
+  created_at timestamp
+}
+
+Table tbl_user {
+  id varchar [pk]
+  username varchar [unique]
+  password varchar 
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table tbl_tenant_user {
+  id varchar [pk]
+  tenant_id varchar [ref: > tbl_tenant.id]
+  user_id varchar [ref: > tbl_user.id]
+  status varchar
+  created_at timestamp
+  
+  Indexes {
+    (tenant_id, user_id) [unique]
+  }
+}
