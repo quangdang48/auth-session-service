@@ -1,7 +1,7 @@
 package com.dumy.config;
 
-import com.dumy.constant.SessionConstants;
-import com.dumy.session.CurrentUser;
+import com.dumy.module.session.constant.SessionConstants;
+import com.dumy.module.session.web.CurrentUser;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
