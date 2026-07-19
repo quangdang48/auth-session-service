@@ -35,6 +35,9 @@ public class Tenant {
     @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false, unique = true)
+    private String domain;
+
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;

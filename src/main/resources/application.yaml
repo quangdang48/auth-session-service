@@ -15,3 +15,7 @@ spring:
     console:
       enabled: true
       path: /h2-console
+
+app:
+  session:
+    ttl-hours: 24

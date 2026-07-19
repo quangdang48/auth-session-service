@@ -1,6 +1,7 @@
 Table tbl_tenant {
   id varchar [pk]
-  name varchar 
+  name varchar
+  domain varchar [unique]
   created_at timestamp
 }
 
@@ -18,8 +19,23 @@ Table tbl_tenant_user {
   user_id varchar [ref: > tbl_user.id]
   status varchar
   created_at timestamp
-  
+
   Indexes {
     (tenant_id, user_id) [unique]
+  }
+}
+
+Table tbl_session {
+  id varchar [pk]
+  user_id varchar [ref: > tbl_user.id]
+  tenant_id varchar [ref: > tbl_tenant.id, null]
+  status varchar
+  expires_at timestamp
+  created_at timestamp
+
+  Indexes {
+    user_id
+    tenant_id
+    expires_at
   }
 }

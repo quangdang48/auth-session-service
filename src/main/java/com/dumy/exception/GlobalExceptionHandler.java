@@ -19,8 +19,10 @@ public class GlobalExceptionHandler {
         String message = ex.getMessage();
 
         HttpStatus status = switch (errorCode) {
-            case ERROR_404_2001 -> HttpStatus.NOT_FOUND;
+            case ERROR_404_2001, ERROR_404_3005 -> HttpStatus.NOT_FOUND;
             case ERROR_409_2002 -> HttpStatus.CONFLICT;
+            case ERROR_401_3001, ERROR_401_3002, ERROR_401_3003, ERROR_401_3004, ERROR_401_3008 -> HttpStatus.UNAUTHORIZED;
+            case ERROR_403_3006 -> HttpStatus.FORBIDDEN;
             default -> HttpStatus.BAD_REQUEST;
         };
 

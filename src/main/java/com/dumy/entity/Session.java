@@ -23,11 +23,20 @@ public class Session {
     @Column(length = 36, updatable = false, nullable = false)
     private String id;
 
+    @Column(name = "user_id", length = 36, nullable = false, updatable = false)
+    private String userId;
+
+    @Column(name = "tenant_id", length = 36, updatable = false)
+    private String tenantId;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     @ColumnDefault("'ACTIVE'")
     @Builder.Default
     private ESessionStatus status = ESessionStatus.ACTIVE;
+
+    @Column(name = "expires_at", nullable = false, updatable = false)
+    private Instant expiresAt;
 
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
