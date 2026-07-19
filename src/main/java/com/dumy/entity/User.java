@@ -52,7 +52,7 @@ public class User {
     private Instant updatedAt;
 }
 
-enum EUserType {
+public enum EUserType {
     B2B,
     B2C
 }

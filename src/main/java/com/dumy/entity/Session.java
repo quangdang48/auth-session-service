@@ -2,6 +2,7 @@ package com.dumy.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -24,7 +25,9 @@ public class Session {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private ESessionStatus status;
+    @ColumnDefault("'ACTIVE'")
+    @Builder.Default
+    private ESessionStatus status = ESessionStatus.ACTIVE;
 
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
